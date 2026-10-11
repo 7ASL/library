@@ -1,4 +1,4 @@
-const bookGrid = document.getElementById("book-grid");
+const bookGrid = document.getElementById('book-grid');
 const bookForm = document.getElementById('book-form');
 const dialog = document.getElementById('add-book');
 
@@ -22,48 +22,48 @@ function addBookToLibrary(title, author, numOfPages, isRead) {
 }
 
 function loadBooks() {
-bookGrid.innerHTML = '';
+    bookGrid.innerHTML = '';
 
-myLibrary.forEach((book, index) => {
-    const card = document.createElement('div');
-    card.classList.add("book-card");
-    card.dataset.id = book.id;
+    myLibrary.forEach((book, index) => {
+        const card = document.createElement('div');
+        card.classList.add('book-card');
+        card.dataset.id = book.id;
 
-    const title = document.createElement('h3');
-    title.textContent = book.title;
+        const title = document.createElement('h3');
+        title.textContent = book.title;
 
-    const author = document.createElement('p');
-    author.textContent = "by " + book.author;
+        const author = document.createElement('p');
+        author.textContent = 'by ' + book.author;
 
-    const pages = document.createElement('p');
-    pages.textContent = "Pages: " + book.numOfPages;
+        const pages = document.createElement('p');
+        pages.textContent = 'Pages: ' + book.numOfPages;
 
-    const readBtn = document.createElement('button');
-    readBtn.type = 'button';
-    readBtn.textContent = book.isRead ? "Read" : "Not read";
-    readBtn.classList.add('read-btn');
-    if(book.isRead) {
-        readBtn.classList.add('is-read');
-    }
-    readBtn.addEventListener('click', () => {
-        book.toggleRead();
+        const readBtn = document.createElement('button');
+        readBtn.type = 'button';
         readBtn.textContent = book.isRead ? 'Read' : 'Not read';
-        readBtn.classList.toggle('is-read', book.isRead);
+        readBtn.classList.add('read-btn');
+        if(book.isRead) {
+            readBtn.classList.add('is-read');
+        }
+        readBtn.addEventListener('click', () => {
+            book.toggleRead();
+            readBtn.textContent = book.isRead ? 'Read' : 'Not read';
+            readBtn.classList.toggle('is-read', book.isRead);
+        })
+
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.textContent = 'Remove';
+        removeBtn.classList.add('remove-btn');
+        removeBtn.addEventListener('click', () => {
+            const bookIndex = myLibrary.findIndex((b) => b.id === card.dataset.id);
+            myLibrary.splice(bookIndex, 1);
+            loadBooks();
+        });
+
+        card.append(title, author, pages, readBtn, removeBtn);
+        bookGrid.append(card);
     })
-
-    const removeBtn = document.createElement('button');
-    removeBtn.type = 'button';
-    removeBtn.textContent = 'Remove';
-    removeBtn.classList.add('remove-btn');
-    removeBtn.addEventListener('click', () => {
-        const bookIndex = myLibrary.findIndex((b) => b.id === card.dataset.id);
-        myLibrary.splice(bookIndex, 1);
-        loadBooks();
-    });
-
-    card.append(title, author, pages, readBtn, removeBtn);
-    bookGrid.append(card);
-})
 }
 
 bookForm.addEventListener('submit', (event) => {
@@ -72,7 +72,7 @@ bookForm.addEventListener('submit', (event) => {
     const { title, author, numOfPages, isRead } = bookForm.elements;
 
     addBookToLibrary( title.value, author.value, Number(numOfPages.value), isRead.checked);
-    
+
     loadBooks();
     bookForm.reset();
     dialog.close();

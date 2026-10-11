@@ -141,7 +141,7 @@ dialog {
         border-radius: 8px;
         display: flex;
         flex-direction: column;
-        width: 200px;
+        width: min(320px, 90vw);
     }
 
     &::backdrop {
