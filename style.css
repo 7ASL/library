@@ -134,3 +134,38 @@ main {
     background-color: #dc2626;
     color: white;
 }
+
+dialog {
+    &[open] {
+        border: none;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+    }
+
+    &::backdrop {
+        background: rgb(0 0 0 / 0.5);
+    }
+}
+
+dialog>form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+form>label {
+    font-size: 1rem;
+}
+
+form>input {
+    margin-bottom: 0.5rem;
+    padding: 0.3rem;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+form>button {
+    margin-top: 1rem;
+}

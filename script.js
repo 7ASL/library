@@ -3,6 +3,8 @@ const authorInput = document.getElementById("author");
 const numOfPagesInput = document.getElementById("numOfPages");
 const isReadInput = document.getElementById("isRead");
 const bookGrid = document.getElementById("book-grid");
+const bookForm = document.getElementById('book-form');
+const dialog = document.getElementById('add-book');
 
 const myLibrary = [
     {title: 'The Hobbit', author: 'J.R.R. Tolkien', numOfPages: 310, isRead: true },
@@ -18,7 +20,7 @@ function Book(title, author, numOfPages, isRead) {
 }
 
 function addBookTolibrary(title, author, numOfPages, isRead) {
-    myLibrary.push(title, author, numOfPages, isRead);
+    myLibrary.push({title, author, numOfPages, isRead});
     loadBooks();
 }
 
@@ -70,5 +72,16 @@ myLibrary.forEach((book, index) => {
     bookGrid.append(card);
 })
 }
+
+bookForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const { title, author, numOfPages, isRead } = bookForm.elements;
+
+    addBookTolibrary( title.value, author.value, Number(numOfPages.value), isRead.checked);
+
+    bookForm.reset();
+    dialog.close();
+})
 
 loadBooks();
