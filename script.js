@@ -6,10 +6,7 @@ const bookGrid = document.getElementById("book-grid");
 const bookForm = document.getElementById('book-form');
 const dialog = document.getElementById('add-book');
 
-const myLibrary = [
-    {title: 'The Hobbit', author: 'J.R.R. Tolkien', numOfPages: 310, isRead: true },
-    {title: 'Dune', author: 'Frank Herbert', numOfPages: 412, isRead: false },
-];
+const myLibrary = [];
 
 function Book(title, author, numOfPages, isRead) {
     this.title = title;
@@ -19,8 +16,9 @@ function Book(title, author, numOfPages, isRead) {
     this.id = crypto.randomUUID();
 }
 
-function addBookTolibrary(title, author, numOfPages, isRead) {
-    myLibrary.push({title, author, numOfPages, isRead});
+function addBookToLibrary(title, author, numOfPages, isRead) {
+    const book = new Book(title, author, numOfPages, isRead);
+    myLibrary.push(book);
     loadBooks();
 }
 
@@ -78,12 +76,14 @@ bookForm.addEventListener('submit', (event) => {
 
     const { title, author, numOfPages, isRead } = bookForm.elements;
 
-    addBookTolibrary( title.value, author.value, Number(numOfPages.value), isRead.checked);
+    addBookToLibrary( title.value, author.value, Number(numOfPages.value), isRead.checked);
 
     bookForm.reset();
     dialog.close();
 })
 
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 310, true);
+addBookToLibrary('Dune', 'Frank Herbert', 412, false);
 loadBooks();
 
 // FOOTER
