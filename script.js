@@ -85,3 +85,6 @@ bookForm.addEventListener('submit', (event) => {
 })
 
 loadBooks();
+
+// FOOTER
+document.querySelector('#year').textContent = new Date().getFullYear();
