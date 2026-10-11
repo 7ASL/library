@@ -16,6 +16,10 @@ function Book(title, author, numOfPages, isRead) {
     this.id = crypto.randomUUID();
 }
 
+Book.prototype.toggleRead = function () {
+    this.isRead = !this.isRead;
+}
+
 function addBookToLibrary(title, author, numOfPages, isRead) {
     const book = new Book(title, author, numOfPages, isRead);
     myLibrary.push(book);
@@ -47,15 +51,9 @@ myLibrary.forEach((book, index) => {
         readBtn.classList.add('is-read');
     }
     readBtn.addEventListener('click', () => {
-        if(!book.isRead) {
-            book.isRead = true;
-            readBtn.textContent = 'Read';
-            readBtn.classList.add('is-read');
-        } else {
-            book.isRead = false;
-            readBtn.textContent = 'Not read';
-            readBtn.classList.remove('is-read');
-        }
+        book.toggleRead();
+        readBtn.textContent = book.isRead ? 'Read' : 'Not read';
+        readBtn.classList.toggle('is-read', book.isRead);
     })
 
     const removeBtn = document.createElement('button');
