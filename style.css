@@ -1,3 +1,8 @@
+p, h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     min-height: 100vh;
     display: grid;
@@ -39,11 +44,93 @@ main {
     text-decoration: none;
 }
 
+
+.center {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+}
+
+.btn-primary {
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: #10B981;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+}
+
 .sign-btn {
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
+    padding: 0.6rem 0.8rem;
+}
+
+.btn-primary:hover {
+    background-color: #059669;
+}
+
+.btn-primary:active {
+    background-color: #047857;
+}
+
+#book-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.book-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.book-card > button {
+    width: 100%;
     border: none;
-    border-radius: 5px;
-    padding: 0.6rem;
-    
+    border-radius: 6px;
+    padding: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.read-btn {
+    background-color: #f0f0f0;
+    color: #555;
+}
+
+.read-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.read-btn.is-read {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.read-btn.is-read:hover {
+    background-color: #a7f3d0;
+}
+
+.remove-btn {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.remove-btn:hover {
+    background-color: #dc2626;
+    color: white;
 }
