@@ -28,6 +28,7 @@ bookGrid.innerHTML = '';
 myLibrary.forEach((book, index) => {
     const card = document.createElement('div');
     card.classList.add("book-card");
+    card.dataset.id = book.id;
 
     const title = document.createElement('h3');
     title.textContent = book.title;
@@ -62,7 +63,8 @@ myLibrary.forEach((book, index) => {
     removeBtn.textContent = 'Remove';
     removeBtn.classList.add('remove-btn');
     removeBtn.addEventListener('click', () => {
-        myLibrary.splice(index, 1);
+        const bookIndex = myLibrary.findIndex((b) => b.id === card.dataset.id);
+        myLibrary.splice(bookIndex, 1);
         loadBooks();
     });
 
